@@ -1,11 +1,4 @@
-from pydantic import BaseModel
-import database 
-
-class Teacher(BaseModel):
-    name: str
-    email: str
-    phone: int
-    subject: str
+from schemas.teachers import Teacher
 
 teachers = []
 
@@ -13,7 +6,7 @@ def list_teachers():
     return teachers
 
 def register_teacher(teacher: Teacher):
-    database.add_teacher(teacher.name, teacher.email, teacher.phone, teacher.subject)
+    Teacher.add_teacher(teacher.name, teacher.email, teacher.phone, teacher.subject)
     teachers.append(teacher)
     return {"message": "Teacher registered", "teacher": teacher}
 
@@ -30,5 +23,3 @@ def delete_teacher(teacher_id: int):
             del teachers[i]
             return {"message": "Teacher deleted"}
     return {"message": "Teacher not found"}
-
-

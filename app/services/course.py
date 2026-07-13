@@ -1,11 +1,5 @@
-from pydantic import BaseModel
-import database 
-
-class Course(BaseModel):
-    course_name: str
-    course_code: str
-    credits: int
-    course_teacher: str
+from schemas.course import Course
+from repositories.course import add_course
 
 courses = []
 
@@ -13,7 +7,7 @@ def list_courses():
     return courses
 
 def register_course(course: Course):
-    database.add_course(course.course_name, course.course_code, course.credits, course.course_teacher)
+    Course.add_course(course.course_name, course.course_code, course.credits, course.course_teacher)
     courses.append(course)
     return {"message": "Course registered", "course": course}
 
