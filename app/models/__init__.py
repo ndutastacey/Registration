@@ -1,4 +1,4 @@
-from . import students, teachers, course
+from models import students, teachers, course
 
 def create_tables():
     students.create_table()
